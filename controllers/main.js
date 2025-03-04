@@ -1,6 +1,14 @@
+// check username, password in post(login) request
+// if exist create new JWT
+// sent to client end
+
+// setup authentication so only the request with jwt cab access the dashbard
+
+
 
 // login controller
 const login = async (req, res) =>{
+    console.log(req.body);
     res.send('Fake Login/Register/Signup');
 }
 
