@@ -1,13 +1,14 @@
+require('express-async-errors');
+
 const express = require('express');
 const unknown = require('./middleware/uknown-routes');
 const errorhandler = require('./middleware/errorhandler');
 const mainRouter = require('./routes/main');
 require('dotenv').config();
 
+
 const app = express();
 
-// AYSC WRAPPER MIDDLE WARE FUNCTIONANLITY IN THIS BELOW PACKAGE
-require('express-async-errors');
 
 // Middlewares - 1
 app.use(express.json());

@@ -4,11 +4,16 @@
 
 // setup authentication so only the request with jwt cab access the dashbard
 
-
+const CustomAPIError = require('../errors/custom-error');
 
 // login controller
 const login = async (req, res) =>{
-    console.log(req.body);
+    const{username, password} = req.body;
+    // check in controller
+    if(!username || !password){
+       throw new CustomAPIError("Please provide email and password", 400);
+    }
+
     res.send('Fake Login/Register/Signup');
 }
 
