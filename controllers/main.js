@@ -4,7 +4,18 @@
 
 // setup authentication so only the request with jwt cab access the dashbard
 
+// login req -> response + signed JWT , for each dashboard req + signed JWT -> response
+
+// JWT json web token encoded in base64url
+// HEADER, PAYLOAD, SIGNATURE
+// HEADER=> {Type of Token(JWT), signing algorith(HMAC SHA256 RSA)} encoded in base64url
+// PAYLOAD=> contains Claims=> statements about the entity=>user and data->registerd, public, private claims
+// Signature=> actual signature secret
+// node package=> jsonwebtoken
+// JWT
+
 const CustomAPIError = require('../errors/custom-error');
+const jwt = require('jsonwebtoken');
 
 // login controller
 const login = async (req, res) =>{
@@ -14,7 +25,10 @@ const login = async (req, res) =>{
        throw new CustomAPIError("Please provide email and password", 400);
     }
 
-    res.send('Fake Login/Register/Signup');
+    const token = jwt.sign({})
+
+
+    res.send('Fake Login/Register/Signup'); 
 }
 
 // Dashboard controller
