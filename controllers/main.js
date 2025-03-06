@@ -12,7 +12,6 @@
 // PAYLOAD=> contains Claims=> statements about the entity=>user and data->registerd, public, private claims
 // Signature=> actual signature secret
 // node package=> jsonwebtoken
-// JWT
 
 const CustomAPIError = require('../errors/custom-error');
 const jwt = require('jsonwebtoken');
@@ -25,14 +24,16 @@ const login = async (req, res) =>{
        throw new CustomAPIError("Please provide email and password", 400);
     }
 
-    const token = jwt.sign({})
+    const id = new Date().getDate()
 
+    const token = jwt.sign({id, username}, process.env.JWT_SECRET, {expiresIn: '30d'});
 
-    res.send('Fake Login/Register/Signup'); 
+    res.status(200).json({msg:"user created", token});
 }
 
 // Dashboard controller
 const dashboard = async (req, res) =>{
+    console.log(req.headers);
     const luckyNumber = Math.floor(Math.random()*100);
     res.status(200).json({msg:`Hello, Boy`,secret: `here is your lucky number: ${luckyNumber}`});
 }
